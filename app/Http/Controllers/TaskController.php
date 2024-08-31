@@ -139,8 +139,9 @@ class TaskController extends Controller
 
     public function myTasks()
     {
-        /** @var \App\Models\User $user */
-        // $user = auth()->user();
+        /** @var User $user */
+        $user = auth()->user();
+
         $query = Task::query()->where('assigned_user_id', $user->id);
 
         $sortField = request("sort_field", 'created_at');
@@ -163,4 +164,6 @@ class TaskController extends Controller
             'success' => session('success'),
         ]);
     }
+
+
 }
